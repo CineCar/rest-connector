@@ -1,0 +1,19 @@
+import { Route } from "./Route";
+import { TicketShopImplementation } from "com.cinecar.ticketshop";
+
+export class CreateMovieRoute implements Route {
+    handle(req: any, res: any) {
+        TicketShopImplementation.getSingleton()
+            .createMovie(req.api.json.name, parseInt(req.api.json.duration))
+            .then((movie) => {
+                res.api.data({
+                    id: movie.getId(),
+                    name: movie.getName(),
+                    duration: movie.getDuration(),
+                });
+            })
+            .catch((err) => {
+                res.api.error(500, "Internal server error");
+            });
+    }
+}

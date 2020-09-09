@@ -17,8 +17,9 @@
     },
     "homepage": "https://github.com/CineCar/rest-connector#readme",
     "dependencies": {
-        "com.cinecar.objects": "git+ssh://git@github.com/CineCar/objects.git",
+        "bcrypt": "^5.0.0",
         "com.cinecar.databaseconnector": "git+ssh://git@github.com/CineCar/db-connector.git",
+        "com.cinecar.objects": "git+ssh://git@github.com/CineCar/objects.git",
         "com.cinecar.ticketshop": "git+ssh://git@github.com/CineCar/model.git",
         "express": "^4.17.1"
     },
