@@ -10,6 +10,9 @@ export class CreateCartRoute implements Route {
                     id: cart.getId(),
                     creationDate: cart.getCreationDate(),
                 });
+            })
+            .catch(() => {
+                res.api.error(500, "Internal server error");
             });
     }
 }

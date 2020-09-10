@@ -1,12 +1,16 @@
 import { Route } from "./Route";
 import { TicketShopImplementation } from "com.cinecar.ticketshop";
-import { Ticket } from "com.cinecar.objects";
+import { Ticket, Cart } from "com.cinecar.objects";
 
 export class AddTicketToCartRoute implements Route {
     handle(req: any, res: any): void {
         TicketShopImplementation.getSingleton()
-            .addTicketToCart(req.params.cartId, req.api.json.movieScreeningId, req.row)
-            .then((cart) => {
+            .addTicketToCart(
+                parseInt(req.params.id),
+                parseInt(req.api.json.movieScreeningId),
+                parseInt(req.api.json.row)
+            )
+            .then((cart: Cart) => {
                 const json = {
                     id: cart.getId(),
                     creationDate: cart.getCreationDate(),
@@ -30,8 +34,9 @@ export class AddTicketToCartRoute implements Route {
 
                 res.api.data(json);
             })
-            .catch(() => {
-                res.api.error(404, "Cart or MovieScreening does not exist");
+            .catch((err) => {
+                console.log(err);
+                res.api.error(404, "MovieScreening or Cart does not exist");
             });
     }
 }

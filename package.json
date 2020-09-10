@@ -4,7 +4,7 @@
     "description": "",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "tsc && PORT=3000 MYSQL_HOST=mixify.ga MYSQL_USER=cinecar MYSQL_PASSWORD=KnDzrbNfmhyngCFh MYSQL_DATABASE=cinecar node dist/app.js"
+        "start": "tsc && PORT=3000 MYSQL_HOST=mixify.ga MYSQL_USER=cinecar MYSQL_PASSWORD=KnDzrbNfmhyngCFh MYSQL_DATABASE=cinecar node --trace-warnings dist/app.js"
     },
     "repository": {
         "type": "git",

@@ -5,7 +5,7 @@ import { Ticket } from "com.cinecar.objects";
 export class CheckoutCartRoute implements Route {
     handle(req: any, res: any): void {
         TicketShopImplementation.getSingleton()
-            .checkoutCart(req.params.id, req.api.json.firstname, req.api.json.lastname)
+            .checkoutCart(parseInt(req.params.id), req.api.json.firstname, req.api.json.lastname)
             .then((booking) => {
                 const json = {
                     id: booking.getId(),
@@ -35,6 +35,10 @@ export class CheckoutCartRoute implements Route {
                 });
 
                 res.api.data(json);
+            })
+            .catch((err) => {
+                console.log(err);
+                res.api.error(400, "Missing information");
             });
     }
 }
