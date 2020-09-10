@@ -4,11 +4,20 @@ import { TicketShopImplementation } from "com.cinecar.ticketshop";
 export class CreateMovieScreeningRoute implements Route {
     handle(req: any, res: any): void {
         TicketShopImplementation.getSingleton()
-            .createMovieScreening(req.params.movieId, new Date(req.api.json.datetime))
-            .then(() => {
-                res.api.data();
+            .createMovieScreening(parseInt(req.params.id), new Date(req.api.json.datetime))
+            .then((movieScreening) => {
+                res.api.data({
+                    id: movieScreening.getId(),
+                    datetime: movieScreening.getDatetime(),
+                    movie: {
+                        id: movieScreening.getMovie().getId(),
+                        name: movieScreening.getMovie().getName(),
+                        duration: movieScreening.getMovie().getDuration(),
+                    },
+                });
             })
-            .catch(() => {
+            .catch((err) => {
+                console.log(err);
                 res.api.error(500, "Internal server error");
             });
     }
