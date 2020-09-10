@@ -45,7 +45,7 @@ app.delete("/bookings/:id", Middleware.verifySession, new CancelBookingRoute().h
 app.get("/movies", new GetMoviesRoute().handle);
 app.get("/movies/:id", new GetMovieRoute().handle);
 
-app.post("/movie-screenings", Middleware.verifySession, new GetMovieScreeningsRoute().handle);
+app.get("/movie-screenings", new GetMovieScreeningsRoute().handle);
 
 app.post("/carts", new CreateCartRoute().handle);
 app.get("/carts/:id", new GetCartRoute().handle);
