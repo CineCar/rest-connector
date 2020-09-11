@@ -23,6 +23,8 @@ export class GetCartRoute implements Route {
                                 id: ticket.getMovieScreening().getMovie().getId(),
                                 name: ticket.getMovieScreening().getMovie().getName(),
                                 duration: ticket.getMovieScreening().getMovie().getDuration(),
+                                price: ticket.getMovieScreening().getMovie().getPrice(),
+                                imageUrl: ticket.getMovieScreening().getMovie().getImageUrl(),
                             },
                         },
                     });

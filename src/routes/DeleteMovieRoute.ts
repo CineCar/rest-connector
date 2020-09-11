@@ -6,7 +6,7 @@ export class DeleteMovieRoute implements Route {
         TicketShopImplementation.getSingleton()
             .deleteMovie(parseInt(req.params.id))
             .then((movie) => {
-                res.api.data(null);
+                res.api.data();
             })
             .catch((err) => {
                 res.api.error(500, "Internal server error");

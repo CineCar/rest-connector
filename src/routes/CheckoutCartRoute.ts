@@ -21,7 +21,6 @@ export class CheckoutCartRoute implements Route {
                 booking.getTickets().forEach((ticket: Ticket) => {
                     json.tickets.push({
                         id: ticket.getId(),
-                        row: ticket.getRow(),
                         movieScreening: {
                             id: ticket.getMovieScreening().getId(),
                             datetime: ticket.getMovieScreening().getDatetime(),
@@ -29,6 +28,8 @@ export class CheckoutCartRoute implements Route {
                                 id: ticket.getMovieScreening().getMovie().getId(),
                                 name: ticket.getMovieScreening().getMovie().getName(),
                                 duration: ticket.getMovieScreening().getMovie().getDuration(),
+                                price: ticket.getMovieScreening().getMovie().getPrice(),
+                                imageUrl: ticket.getMovieScreening().getMovie().getImageUrl(),
                             },
                         },
                     });

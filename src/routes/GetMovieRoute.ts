@@ -20,6 +20,8 @@ export class GetMovieRoute implements Route {
                     id: movie.getId(),
                     name: movie.getName(),
                     duration: movie.getDuration(),
+                    price: movie.getPrice(),
+                    imageUrl: movie.getImageUrl(),
                     movieScreenings: movieScreenings,
                 });
             })

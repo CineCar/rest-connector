@@ -5,11 +5,7 @@ import { Ticket, Cart } from "com.cinecar.objects";
 export class AddTicketToCartRoute implements Route {
     handle(req: any, res: any): void {
         TicketShopImplementation.getSingleton()
-            .addTicketToCart(
-                parseInt(req.params.id),
-                parseInt(req.api.json.movieScreeningId),
-                parseInt(req.api.json.row)
-            )
+            .addTicketToCart(parseInt(req.params.id), parseInt(req.api.json.movieScreeningId))
             .then((cart: Cart) => {
                 const json = {
                     id: cart.getId(),
@@ -27,6 +23,8 @@ export class AddTicketToCartRoute implements Route {
                                 id: ticket.getMovieScreening().getMovie().getId(),
                                 name: ticket.getMovieScreening().getMovie().getName(),
                                 duration: ticket.getMovieScreening().getMovie().getDuration(),
+                                price: ticket.getMovieScreening().getMovie().getPrice(),
+                                imageUrl: ticket.getMovieScreening().getMovie().getImageUrl(),
                             },
                         },
                     });

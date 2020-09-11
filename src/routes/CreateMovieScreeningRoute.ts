@@ -13,6 +13,8 @@ export class CreateMovieScreeningRoute implements Route {
                         id: movieScreening.getMovie().getId(),
                         name: movieScreening.getMovie().getName(),
                         duration: movieScreening.getMovie().getDuration(),
+                        price: movieScreening.getMovie().getPrice(),
+                        imageUrl: movieScreening.getMovie().getImageUrl(),
                     },
                 });
             })
