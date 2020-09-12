@@ -6,17 +6,7 @@ export class CreateMovieScreeningRoute implements Route {
         TicketShopImplementation.getSingleton()
             .createMovieScreening(parseInt(req.params.id), new Date(req.api.json.datetime))
             .then((movieScreening) => {
-                res.api.data({
-                    id: movieScreening.getId(),
-                    datetime: movieScreening.getDatetime(),
-                    movie: {
-                        id: movieScreening.getMovie().getId(),
-                        name: movieScreening.getMovie().getName(),
-                        duration: movieScreening.getMovie().getDuration(),
-                        price: movieScreening.getMovie().getPrice(),
-                        imageUrl: movieScreening.getMovie().getImageUrl(),
-                    },
-                });
+                res.api.data(movieScreening.toJSON(true));
             })
             .catch((err) => {
                 console.log(err);

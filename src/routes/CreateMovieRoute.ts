@@ -11,11 +11,7 @@ export class CreateMovieRoute implements Route {
                 req.api.json.imageUrl
             )
             .then((movie) => {
-                res.api.data({
-                    id: movie.getId(),
-                    name: movie.getName(),
-                    duration: movie.getDuration(),
-                });
+                res.api.data(movie.toJSON(true));
             })
             .catch((err) => {
                 res.api.error(500, "Internal server error");

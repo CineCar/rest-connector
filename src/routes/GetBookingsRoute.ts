@@ -10,35 +10,7 @@ export class GetBookingsRoute implements Route {
                 const json = [];
 
                 bookings.forEach((booking: Booking) => {
-                    const jsonBooking = {
-                        id: booking.getId(),
-                        cancelled: booking.isCancelled(),
-                        person: {
-                            id: booking.getPerson().getId(),
-                            firstname: booking.getPerson().getFirstname(),
-                            lastname: booking.getPerson().getLastname(),
-                        },
-                        tickets: [],
-                    };
-
-                    booking.getTickets().forEach((ticket: Ticket) => {
-                        jsonBooking.tickets.push({
-                            id: ticket.getId(),
-                            movieScreening: {
-                                id: ticket.getMovieScreening().getId(),
-                                datetime: ticket.getMovieScreening().getDatetime(),
-                                movie: {
-                                    id: ticket.getMovieScreening().getMovie().getId(),
-                                    name: ticket.getMovieScreening().getMovie().getName(),
-                                    duration: ticket.getMovieScreening().getMovie().getDuration(),
-                                    price: ticket.getMovieScreening().getMovie().getPrice(),
-                                    imageUrl: ticket.getMovieScreening().getMovie().getImageUrl(),
-                                },
-                            },
-                        });
-                    });
-
-                    json.push(jsonBooking);
+                    json.push(booking.toJSON());
                 });
 
                 res.api.data(json);

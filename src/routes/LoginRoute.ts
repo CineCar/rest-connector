@@ -7,10 +7,7 @@ export class LoginRoute implements Route {
         TicketShopImplementation.getSingleton()
             .loginUser(req.api.json.id, req.api.json.password)
             .then((session: Session) => {
-                res.api.data({
-                    id: session.getId(),
-                    token: session.getToken(),
-                });
+                res.api.data(session.toJSON());
             })
             .catch((err) => {
                 res.api.error(401, "Username or password is invalid");

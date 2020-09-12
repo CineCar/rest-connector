@@ -6,10 +6,7 @@ export class CreateCartRoute implements Route {
         TicketShopImplementation.getSingleton()
             .createCart()
             .then((cart) => {
-                res.api.data({
-                    id: cart.getId(),
-                    creationDate: cart.getCreationDate(),
-                });
+                res.api.data(cart.toJSON());
             })
             .catch(() => {
                 res.api.error(500, "Internal server error");

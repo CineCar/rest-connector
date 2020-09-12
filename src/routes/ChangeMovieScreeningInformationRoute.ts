@@ -7,17 +7,7 @@ export class ChangeMovieScreeningInformationRoute implements Route {
         TicketShopImplementation.getSingleton()
             .changeMovieScreeningInformation(req.params.id, new Date(req.api.json.datetime))
             .then((movieScreening: MovieScreening) => {
-                res.api.data({
-                    id: movieScreening.getId(),
-                    datetime: movieScreening.getDatetime(),
-                    movie: {
-                        id: movieScreening.getMovie().getId(),
-                        name: movieScreening.getMovie().getName(),
-                        duration: movieScreening.getMovie().getDuration(),
-                        price: movieScreening.getMovie().getPrice(),
-                        imageUrl: movieScreening.getMovie().getImageUrl(),
-                    },
-                });
+                res.api.data(movieScreening.toJSON(true));
             })
             .catch(() => {
                 res.api.error(500, "Internal server error");

@@ -10,17 +10,7 @@ export class GetMovieScreeningsRoute implements Route {
                 const json = [];
 
                 movieScreenings.forEach((movieScreening: MovieScreening) => {
-                    json.push({
-                        id: movieScreening.getId(),
-                        datetime: movieScreening.getDatetime(),
-                        movie: {
-                            id: movieScreening.getMovie().getId(),
-                            name: movieScreening.getMovie().getName(),
-                            duration: movieScreening.getMovie().getDuration(),
-                            price: movieScreening.getMovie().getPrice(),
-                            imageUrl: movieScreening.getMovie().getImageUrl(),
-                        },
-                    });
+                    json.push(movieScreening.toJSON(true));
                 });
 
                 res.api.data(json);

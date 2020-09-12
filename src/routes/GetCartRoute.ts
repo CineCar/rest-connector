@@ -7,30 +7,7 @@ export class GetCartRoute implements Route {
         TicketShopImplementation.getSingleton()
             .getCart(parseInt(req.params.id))
             .then((cart) => {
-                const json = {
-                    id: cart.getId(),
-                    creationDate: cart.getCreationDate(),
-                    tickets: [],
-                };
-
-                cart.getTickets().forEach((ticket: Ticket) => {
-                    json.tickets.push({
-                        id: ticket.getId(),
-                        movieScreening: {
-                            id: ticket.getMovieScreening().getId(),
-                            datetime: ticket.getMovieScreening().getDatetime(),
-                            movie: {
-                                id: ticket.getMovieScreening().getMovie().getId(),
-                                name: ticket.getMovieScreening().getMovie().getName(),
-                                duration: ticket.getMovieScreening().getMovie().getDuration(),
-                                price: ticket.getMovieScreening().getMovie().getPrice(),
-                                imageUrl: ticket.getMovieScreening().getMovie().getImageUrl(),
-                            },
-                        },
-                    });
-                });
-
-                res.api.data(json);
+                res.api.data(cart.toJSON());
             })
             .catch(() => {
                 res.api.error(404, "Cart does not exist");

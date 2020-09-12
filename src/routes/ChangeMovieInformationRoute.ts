@@ -12,13 +12,7 @@ export class ChangeMovieInformationRoute implements Route {
                 req.api.json.imageUrl
             )
             .then((movie) => {
-                res.api.data({
-                    id: movie.getId(),
-                    name: movie.getName(),
-                    duration: movie.getDuration(),
-                    price: movie.getPrice(),
-                    imageUrl: movie.getImageUrl(),
-                });
+                res.api.data(movie.toJSON(true));
             })
             .catch((err) => {
                 res.api.error(500, "Internal server error");

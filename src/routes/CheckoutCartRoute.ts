@@ -7,35 +7,7 @@ export class CheckoutCartRoute implements Route {
         TicketShopImplementation.getSingleton()
             .checkoutCart(parseInt(req.params.id), req.api.json.firstname, req.api.json.lastname)
             .then((booking) => {
-                const json = {
-                    id: booking.getId(),
-                    cancelled: booking.isCancelled(),
-                    person: {
-                        id: booking.getPerson().getId(),
-                        firstname: booking.getPerson().getFirstname(),
-                        lastname: booking.getPerson().getLastname(),
-                    },
-                    tickets: [],
-                };
-
-                booking.getTickets().forEach((ticket: Ticket) => {
-                    json.tickets.push({
-                        id: ticket.getId(),
-                        movieScreening: {
-                            id: ticket.getMovieScreening().getId(),
-                            datetime: ticket.getMovieScreening().getDatetime(),
-                            movie: {
-                                id: ticket.getMovieScreening().getMovie().getId(),
-                                name: ticket.getMovieScreening().getMovie().getName(),
-                                duration: ticket.getMovieScreening().getMovie().getDuration(),
-                                price: ticket.getMovieScreening().getMovie().getPrice(),
-                                imageUrl: ticket.getMovieScreening().getMovie().getImageUrl(),
-                            },
-                        },
-                    });
-                });
-
-                res.api.data(json);
+                res.api.data(booking.toJSON());
             })
             .catch((err) => {
                 console.log(err);

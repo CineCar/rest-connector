@@ -7,23 +7,7 @@ export class GetMovieRoute implements Route {
         TicketShopImplementation.getSingleton()
             .getMovie(req.params.id)
             .then((movie: Movie) => {
-                const movieScreenings = [];
-
-                movie.getMovieScreenings().forEach((movieScreening) => {
-                    movieScreenings.push({
-                        id: movieScreening.getId(),
-                        datetime: movieScreening.getDatetime(),
-                    });
-                });
-
-                res.api.data({
-                    id: movie.getId(),
-                    name: movie.getName(),
-                    duration: movie.getDuration(),
-                    price: movie.getPrice(),
-                    imageUrl: movie.getImageUrl(),
-                    movieScreenings: movieScreenings,
-                });
+                res.api.data(movie.toJSON(true));
             })
             .catch((err) => {
                 res.api.error(404, "Movie not found");
