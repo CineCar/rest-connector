@@ -2,6 +2,10 @@ import { TicketShopImplementation } from "com.cinecar.ticketshop";
 
 export class Middleware {
     public static use(req, res, next): void {
+        // Bypass CORS
+        res.set("Access-Control-Allow-Origin", "*");
+        res.set("Access-Control-Allow-Headers", "*");
+
         res.api = {
             data: (data) => {
                 res.json({
