@@ -37,10 +37,9 @@ export class Middleware {
             req.on("end", () => {
                 try {
                     req.api.json = JSON.parse(req.api.data);
+                    next();
                 } catch (err) {
                     res.api.error(400, "Invalid JSON");
-                } finally {
-                    next();
                 }
             });
         } else next();
