@@ -50,7 +50,7 @@ app.get("/movie-screenings", new GetMovieScreeningsRoute().handle);
 
 app.post("/carts", new CreateCartRoute().handle);
 app.get("/carts/:id", new GetCartRoute().handle);
-app.post("/carts/:id", new AddTicketToCartRoute().handle);
+app.post("/carts/:id/tickets", new AddTicketToCartRoute().handle);
 app.delete("/carts/:cartId/tickets/:ticketId", new DeleteTicketFromCartRoute().handle);
 
 app.post("/carts/:id/checkout", new CheckoutCartRoute().handle);
